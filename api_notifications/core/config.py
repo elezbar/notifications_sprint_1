@@ -1,0 +1,35 @@
+import os
+from logging import config as logging_config
+
+from pydantic import BaseSettings, Field
+
+from core.logger import LOGGING
+
+# Применяем настройки логирования
+logging_config.dictConfig(LOGGING)
+
+
+class Settings(BaseSettings):
+    film_body_params: list[str] = ['directors', 'genre', 'writers', 'actors']
+    person_body_params: list[str] = ['film_ids']
+    host: str = Field('127.0.0.1', env='HOST')
+    port: int = int(Field('9080', env='PORT'))
+    project_name: str = Field('notification', env='PROJECT_NAME')
+    name_instant_queues: str = Field('instant', env='NAME_INSTANT_QUEUE')
+    name_delayed_queues: str = Field('delayed', env='NAME_DELAYED_QUEUE')
+    broker_login: str = Field('guest', env='BROKER_LOGIN')
+    broker_password: str = Field('guest', env='BROKER_PASSWORD')
+    broker_host: str = Field('127.0.0.1', env='BROKER_HOST')
+    broker_port: int = int(Field('5672', env='BROKER_PORT'))
+    db_url = (
+        f"{Field('postgresql', env='DB_TYPE')}+psycopg2://{Field('user', env='DB_USER')}:"
+        f"{Field('123qwe', env='DB_PASSWORD')}@{Field('guest', env='DB_HOST')}:"
+        f"{Field(5432, env='DB_PORT')}/{Field('notification', env='DB_NAME')}"
+    )
+
+    class Config:
+        env_file = '../../../.env'
+        env_file_encoding = 'utf-8'
+
+
+settings = Settings()
