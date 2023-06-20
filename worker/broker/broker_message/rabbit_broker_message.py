@@ -1,4 +1,4 @@
-from services.broker.broker_message.abstract_broker_message import AbstractBrokerMessage
+from broker.broker_message.abstract_broker_message import AbstractBrokerMessage
 
 
 class RabbitBrokerMessage(AbstractBrokerMessage):

@@ -9,8 +9,6 @@ from jinja2 import Template
 from broker.abscract_broker import AbstractBroker
 from utils.api_request import ApiRequest
 
-#pochta nqopdpforfpricfd
-
 
 class WorkerNotification():
     def __init__(

@@ -4,8 +4,6 @@ import urllib.parse
 
 import urllib3
 
-from worker_bp.exceptions import ConnectionTimeout
-
 
 class ApiRequest:
     CONTENT_TYPE_URLENCODE = 'application/x-www-form-urlencoded'
@@ -41,5 +39,3 @@ class ApiRequest:
             return json.loads(response.data.decode())
         except json.JSONDecodeError:
             return None
-        except urllib3.exceptions.ConnectTimeoutError:
-            raise ConnectionTimeout
