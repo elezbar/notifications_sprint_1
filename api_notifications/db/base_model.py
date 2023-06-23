@@ -1,9 +1,7 @@
 from typing import Any
 
-from sqlalchemy import inspect, MetaData
+from sqlalchemy import MetaData, inspect
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
-
-from app.utils.string import camelcase_to_snake
 
 meta = MetaData(naming_convention={
     "ix": "ix_%(column_0_label)s",
@@ -12,6 +10,21 @@ meta = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
     "pk": "pk_%(table_name)s"
 })
+
+
+def camelcase_to_snake(val: str) -> str:
+    """
+    Converts CamelCaseString to stake_case_string
+    """
+
+    if not val:
+        # nothing to change
+        return val
+
+    new_val = [val[0].lower()]
+    for v in val[1:]:
+        new_val.append(v if not v.isalpha() or v.islower() else f"_{v.lower()}")
+    return "".join(new_val)
 
 
 @as_declarative(metadata=meta)

@@ -1,12 +1,11 @@
 
 import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import ORJSONResponse
-
 from api.v1 import event, notification, send_notification, unsubscribe, wrapper
 from core.config import settings
 from core.logger import get_logger
 from db import broker
+from fastapi import FastAPI
+from fastapi.responses import ORJSONResponse
 from services.broker.rabbit_broker import RabbitBroker
 
 logger = get_logger(__name__)

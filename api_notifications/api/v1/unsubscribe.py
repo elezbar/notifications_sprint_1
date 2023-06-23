@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import delete, insert, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette.requests import Request
+from schemas.Unsubscribe import EditUnsubscribeDB
 
 from db.database import get_db
 from models.models import Unsubscribe
