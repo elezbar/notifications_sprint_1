@@ -1,10 +1,12 @@
 import os
 import signal
 import smtplib
+
 from dotenv import load_dotenv
-from broker.rabbit_broker import RabbitBroker
-from utils.api_request import ApiRequest
-from utils.worker import WorkerNotification
+
+from .broker.rabbit_broker import RabbitBroker
+from .utils.api_request import ApiRequest
+from .utils.worker import WorkerNotification
 
 worker: WorkerNotification = None
 

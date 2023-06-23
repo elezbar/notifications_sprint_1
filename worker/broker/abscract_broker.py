@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from broker.broker_message import AbstractBrokerMessage
+from .broker_message.abstract_broker_message import AbstractBrokerMessage
 
 
 class AbstractBroker(ABC):
