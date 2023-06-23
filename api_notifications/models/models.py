@@ -1,9 +1,9 @@
-from typing import Optional
-from sqlalchemy import ForeignKey, Text, String, func
-from db.base_model import BaseModel
-from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
 from datetime import datetime
+from typing import Optional
+
+from db.base_model import BaseModel
+from sqlalchemy import ForeignKey, String, Text, func
+from sqlalchemy.orm import Mapped, mapped_column
 
 
 class Event(BaseModel):
