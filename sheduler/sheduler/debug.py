@@ -4,7 +4,7 @@ from random import randint
 from models import models
 from postgres.base_model import meta
 from postgres.db import engine, session
-from schedule_abstract import Likes
+from schedule import Notifications
 
 
 @session
@@ -35,8 +35,8 @@ if __name__ == '__main__':
     meta.create_all(bind=engine)
     create_db_initial_data()
 
-    likes = Likes()
-    events = likes.get_all_events_from_db()
-    print(type(events))
-    for event in likes.get_all_events_from_db():
-        print(event)
+    # likes = Notifications()
+    # events = likes.get_all_events_from_db()
+    # print(type(events))
+    # for event in likes.get_all_events_from_db():
+    #     print(event)
