@@ -1,15 +1,14 @@
-from datetime import now
-
-from fastapi import APIRouter, Depends
-from sqlalchemy import delete, insert, select, update
-from sqlalchemy.ext.asyncio import AsyncSession
-from starlette.requests import Request
+from datetime import datetime
 
 from db.database import get_db
+from fastapi import APIRouter, Depends
 from models.models import Notification
 from schemas.Notification import (AddNotificationDB, DeleteNotificationDB,
                                   EditNotificationDB, NotificationDB,
                                   UpdateDataNotificationDB)
+from sqlalchemy import delete, insert, select, update
+from sqlalchemy.ext.asyncio import AsyncSession
+from starlette.requests import Request
 
 router = APIRouter(prefix='/notification')
 
@@ -51,6 +50,6 @@ async def delete_notification(*, request: Request, form: DeleteNotificationDB, d
 @router.post('/update_data_notification')
 async def update_data_notification(*, request: Request, form: UpdateDataNotificationDB, db: AsyncSession = Depends(get_db)):
     stmt = (update(Notification)
-            .values(last_update=now())
+            .values(last_update=datetime.now())
             .where(Notification.id_content == form.id_content))
     await db.execute(stmt)

@@ -1,3 +1,4 @@
+from typing import Any
 from jinja2 import Template, TemplateSyntaxError
 from pydantic import BaseModel, validator
 
@@ -18,7 +19,7 @@ class InstantNotification(BaseModel):
 
 class UserNotificationData(BaseModel):
     id_user: int
-    data: dict[str, any]
+    data: dict[str, Any]
 
 
 class DelayedNotification(BaseModel):

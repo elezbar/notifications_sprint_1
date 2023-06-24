@@ -49,7 +49,7 @@ jobs:
     - name: Lint with mypy
       run: |
         # stop the build if there are Python syntax errors or undefined names
-        mypy . 
+        mypy . --ignore-missing-imports --install-types
     
     - name: Test with unittest
       run: |

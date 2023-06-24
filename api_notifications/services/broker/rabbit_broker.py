@@ -1,7 +1,7 @@
 import pika
 
-from services.broker import AbstractBroker
-from services.broker.broker_message import RabbitBrokerMessage
+from services.broker.abscract_broker import AbstractBroker
+from services.broker.broker_message.rabbit_broker_message import RabbitBrokerMessage
 
 
 class RabbitBroker(AbstractBroker):

@@ -8,9 +8,9 @@ from .broker_message.memory_broker_message import MemoryBrokerMessage
 
 
 class MemoryBroker(AbstractBroker):
-    __deque = {}
-    __deque_dead = {}
-    __start_tread = [False]
+    __deque: dict[dict] = {}
+    __deque_dead: dict[dict] = {}
+    __start_tread: list[bool] = [False]
 
     @classmethod
     def __dead_letter_queue(cls):
@@ -45,7 +45,7 @@ class MemoryBroker(AbstractBroker):
     def push(self, msg):
         self.__deque[self.name_queue].append(msg)
 
-    def pop(self) -> MemoryBrokerMessage:
+    def pop(self) -> MemoryBrokerMessage | None:
         try:
             return MemoryBrokerMessage(self.__deque[self.name_queue].pop())
         except IndexError:
@@ -72,4 +72,3 @@ class MemoryBroker(AbstractBroker):
             self.close()
         if not self.__deque:
             self.stop_thread_dead_letter()
-

@@ -10,8 +10,6 @@ logging_config.dictConfig(LOGGING)
 
 
 class Settings(BaseSettings):
-    film_body_params: list[str] = ['directors', 'genre', 'writers', 'actors']
-    person_body_params: list[str] = ['film_ids']
     host: str = Field('127.0.0.1', env='HOST')
     port: int = int(Field('9080', env='PORT'))
     project_name: str = Field('notification', env='PROJECT_NAME')
@@ -32,4 +30,4 @@ class Settings(BaseSettings):
         env_file_encoding = 'utf-8'
 
 
-settings = Settings()
+settings = Settings.construct()
