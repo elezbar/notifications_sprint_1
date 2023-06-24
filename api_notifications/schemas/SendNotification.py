@@ -25,6 +25,7 @@ class UserNotificationData(BaseModel):
 class DelayedNotification(BaseModel):
     user_data: list[UserNotificationData]
     template: str
+    type: str
 
     @validator('template')
     def valid_template(cls, v, values):
