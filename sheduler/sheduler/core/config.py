@@ -18,9 +18,11 @@ class DatabaseConfiguration(BaseConfig):
 
 class Constants(BaseConfig):
     likes_event_id = Field(1, env="LIKES_EVENT_ID")
-    comments_event_id = Field(1, env="COMMENTS_EVENT_ID")
+    comments_event_id = Field(2, env="COMMENTS_EVENT_ID")
+    news_event_id = Field(3, env="NEWS_EVENT_ID")
     ugs_url = Field('localhost:8000/', env="UGS_URL")
     notifications_url = Field('https://localhost:5552', env="NOTIFICATIONS_URL")
+    news_url = Field('https://localhost:5552', env="NEWS_URL")
 
 
 class CeleryConfig(BaseConfig):

@@ -1,5 +1,5 @@
 import aiohttp
-import json
+import orjson
 
 from aiohttp.client_exceptions import ClientError
 
@@ -32,7 +32,7 @@ async def request_post(url, data):
     async with aiohttp.ClientSession() as session:
         async with session.post(
             url,
-            data = json.dumps(data).encode(),
+            data = orjson.dumps(data).encode(),
             headers = {}
         ) as resp:
             try:
