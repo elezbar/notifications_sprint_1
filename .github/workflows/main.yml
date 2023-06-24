@@ -5,7 +5,7 @@ on:
     branches: [ main ]
     
 jobs:
-  build-3.10:
+  build_3.10:
 
     runs-on: ubuntu-latest
 
@@ -55,7 +55,7 @@ jobs:
       run: |
         python -m unittest
 
-  build-3.11:
+  build_3.11:
 
     runs-on: ubuntu-latest
 
