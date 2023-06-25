@@ -59,7 +59,7 @@ class Notifications(NotificationsABC):
             parser = NotificationsParser(NewsModel, result)
             parsed_result = parser.news_parser()
         if parsed_result:
-            self.send_upadte_to_api(notification, parsed_result)
+            await self.send_upadte_to_api(notification, parsed_result)
         
     async def update_notifications_in_db(self, session, notification: Notification, result: dict) -> None:
         """Обновляет уведомление в БД."""
@@ -74,7 +74,7 @@ class Notifications(NotificationsABC):
         result = asyncio.run(utils.request_post(url, data))
         if result:
             if result['result'] == 'ok':
-                self.update_notifications_in_db(notification, result)
+                await self.update_notifications_in_db(notification, result)
 
 
 class NotificationsParser(NotificationsParserABC):
