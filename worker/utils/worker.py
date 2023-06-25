@@ -10,7 +10,7 @@ from broker.abscract_broker import AbstractBroker
 from utils.api_request import ApiRequest
 
 
-class WorkerNotification():
+class WorkerNotification:
     def __init__(
         self,
         brokers: list[AbstractBroker],
