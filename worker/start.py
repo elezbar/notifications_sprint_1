@@ -1,8 +1,6 @@
-import os
 import signal
 import smtplib
 
-from dotenv import load_dotenv
 
 from .broker.rabbit_broker import RabbitBroker
 from .config import config

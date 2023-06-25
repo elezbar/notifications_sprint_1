@@ -24,6 +24,7 @@ class Wrapper(BaseModel):
     )
     id_wrapper: Mapped[int] = mapped_column(primary_key=True)
     id_event: Mapped[int] = mapped_column(ForeignKey('t_event.id_event'), ondelete="CASCADE")
+    type_notification: Mapped[str]
     template: Mapped[str] = mapped_column(Text)
 
 

@@ -47,21 +47,13 @@ class WorkerNotification:
                 users_data[user['id_user']].update(user)
         return users_data
 
-    def send_message(self, msg, type: str = 'email'):
-        if type == 'email':
-            tm = Template(msg['template'])
-            cl_data = self.collection_data(msg)
-            for user in cl_data:
-                text_email = tm.render(**cl_data['user'])
-                message = EmailMessage()
-                message['From'] = self.email_from
-                message['To'] = ",".join([user['email']])
-                message.add_alternative(text_email, subtype='html')
-                self.smtp_server.sendmail(
-                    self.email_from,
-                    [self.email_from],
-                    message.as_string()
-                )
+    def send_message(self, msg):
+        tm = Template(msg['template'])
+        cl_data = self.collection_data(msg)
+        for user in cl_data:
+            if msg['type_notification'] == 'email':
+                msg_send = EmailMessage(user, tm, self.smtp_server, self.email_from)
+            msg_send.send_message()
 
     def one_itteration_job(self):
         for broker in self.brokers:

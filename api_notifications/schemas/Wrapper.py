@@ -5,6 +5,7 @@ from pydantic import BaseModel, validator
 class AddWrapperDB(BaseModel):
     id_event: int
     template: str
+    type_notification: str
 
     @validator('template')
     def valid_template(cls, v, values):

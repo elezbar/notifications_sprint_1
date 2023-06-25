@@ -46,6 +46,7 @@ async def shutdown() -> None:
     for b in broker.priority_brokers:
         b.close()
 
+
 @app.middleware("http")
 async def auth_middleware(request: Request, call_next):
     if request.url.path in [app.docs_url, app.openapi_url]:
