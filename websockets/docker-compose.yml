@@ -1,0 +1,9 @@
+version: "3.2"
+services:
+
+  websocket:
+    build: .
+    container_name: websocket
+    restart: always
+    env_file:
+      - ./.env
