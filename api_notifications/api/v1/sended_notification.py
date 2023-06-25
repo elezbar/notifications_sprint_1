@@ -1,14 +1,13 @@
 from datetime import datetime
 
-from db.broker import get_brokers
 from db.database import get_db
 from fastapi import APIRouter, Depends
-from schemas.SendedNotification import DeleteSendedNotification
+from schemas.sended_notification import DeleteSendedNotification
 from sqlalchemy import delete, insert, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api_notifications.models.models import SendedNotification
-from api_notifications.schemas.SendedNotification import (
+from api_notifications.schemas.sended_notification import (
     AddSendedNotification, CheckSendedNotification, SendedNotificationDB)
 
 router = APIRouter(prefix='/sended_notification')

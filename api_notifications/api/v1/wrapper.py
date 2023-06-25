@@ -6,7 +6,7 @@ from starlette.requests import Request
 
 from db.database import get_db
 from models.models import Wrapper
-from schemas.Wrapper import (AddWrapperDB, DeleteWrapperDB, EditWrapperDB,
+from schemas.wrapper import (AddWrapperDB, DeleteWrapperDB, EditWrapperDB,
                              WrapperDB)
 
 router = APIRouter(prefix='/wrapper')

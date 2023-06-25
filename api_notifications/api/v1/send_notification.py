@@ -3,7 +3,7 @@ from fastapi import APIRouter, Depends
 from jinja2 import Template, Environment, meta
 from core.config import settings
 from db.broker import get_brokers
-from schemas.SendNotification import DelayedNotification, InstantNotification
+from schemas.send_notification import DelayedNotification, InstantNotification
 
 router = APIRouter(prefix='/send_notification')
 

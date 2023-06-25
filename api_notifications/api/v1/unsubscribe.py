@@ -7,7 +7,7 @@ from schemas.Unsubscribe import EditUnsubscribeDB
 
 from db.database import get_db
 from models.models import Unsubscribe
-from schemas.Unsubscribe import (AddUnsubscribeDB, RemoveUnsubscribeDB,
+from schemas.unsubscribe import (AddUnsubscribeDB, RemoveUnsubscribeDB,
                                  UnsubscribeDB)
 
 router = APIRouter(prefix='/unsubscribe')

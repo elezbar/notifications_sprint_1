@@ -6,7 +6,7 @@ from starlette.requests import Request
 
 from db.database import get_db
 from models.models import Event
-from schemas.Event import AddEventDB, DeleteEventDB, EditEventDB, EventDB
+from schemas.event import AddEventDB, DeleteEventDB, EditEventDB, EventDB
 
 router = APIRouter(prefix='/event')
 

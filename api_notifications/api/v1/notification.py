@@ -4,7 +4,7 @@ from typing import Annotated
 from db.database import get_db
 from fastapi import APIRouter, Depends, Query
 from models.models import Notification
-from schemas.Notification import (AddNotificationDB, DeleteNotificationDB,
+from schemas.notification import (AddNotificationDB, DeleteNotificationDB,
                                   EditNotificationDB, NotificationDB,
                                   UpdateDataNotificationDB)
 from sqlalchemy import delete, insert, select, update
