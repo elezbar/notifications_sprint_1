@@ -23,7 +23,7 @@ class Wrapper(BaseModel):
         {'schema': 'notification'}
     )
     id_wrapper: Mapped[int] = mapped_column(primary_key=True)
-    id_event: Mapped[int] = mapped_column(ForeignKey('notification.t_event.id_event'))
+    id_event: Mapped[int] = mapped_column(ForeignKey('notification.t_event.id_event'), ondelete="CASCADE")
     template: Mapped[str] = mapped_column(Text)
 
 
@@ -33,7 +33,7 @@ class Unsubscribe(BaseModel):
         {'schema': 'notification'}
     )
     id_unsubscribe: Mapped[int] = mapped_column(primary_key=True)
-    id_event: Mapped[int] = mapped_column(ForeignKey('notification.t_event.id_event'))
+    id_event: Mapped[int] = mapped_column(ForeignKey('notification.t_event.id_event'), ondelete="CASCADE")
     id_user: Mapped[int]
 
 
@@ -44,7 +44,7 @@ class Notification(BaseModel):
     )
     id_notification: Mapped[int] = mapped_column(primary_key=True)
     id_content: Mapped[Optional[int]]
-    id_event: Mapped[int] = mapped_column(ForeignKey('notification.t_event.id_event'))
+    id_event: Mapped[int] = mapped_column(ForeignKey('notification.t_event.id_event'), ondelete="CASCADE")
     id_user: Mapped[Optional[int]]
     last_update: Mapped[Optional[datetime]]
     last_notification_send: Mapped[Optional[datetime]]

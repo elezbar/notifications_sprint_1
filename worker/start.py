@@ -5,6 +5,7 @@ import smtplib
 from dotenv import load_dotenv
 
 from .broker.rabbit_broker import RabbitBroker
+from .config import config
 from .utils.api_request import ApiRequest
 from .utils.worker import WorkerNotification
 
@@ -16,41 +17,39 @@ def handler_shutdown():
 
 
 if __name__ == "__main__":
-    load_dotenv()
     brokers = [
         RabbitBroker(
-            os.environ.get('NAME_INSTANT_QUEUE'),
-            os.environ.get('BROKER_LOGIN'),
-            os.environ.get('BROKER_PASSWORD'),
-            os.environ.get('BROKER_HOST'),
-            int(os.environ.get('BROKER_PORT')),
+            config.broker.name_instant_queue,
+            config.broker.broker_login,
+            config.broker.broker_password,
+            config.broker.broker_host,
+            config.broker.broker_port
         ),
         RabbitBroker(
-            os.environ.get('NAME_DELAYED_QUEUE'),
-            os.environ.get('BROKER_LOGIN'),
-            os.environ.get('BROKER_PASSWORD'),
-            os.environ.get('BROKER_HOST'),
-            int(os.environ.get('BROKER_PORT')),
-        ),
+            config.broker.name_delayed_queue,
+            config.broker.broker_login,
+            config.broker.broker_password,
+            config.broker.broker_host,
+            config.broker.broker_port
+        )
     ]
     smtp_server = smtplib.SMTP_SSL(
-        os.environ.get('SMTP_HOST'),
-        int(os.environ.get('SMTP_PORT'))
+        config.smtp.smtp_host,
+        config.smtp.smtp_port
     )
     smtp_server.login(
-        os.environ.get('SMTP_LOGIN'),
-        os.environ.get('SMTP_PASSWORD')
+        config.smtp.smtp_login,
+        config.smtp.smtp_password
     )
     api_request = ApiRequest(
-        os.environ.get('ACCESS_TOKEN'),
+        config.broker.access_token,
     )
-
     worker = WorkerNotification(
         brokers,
         smtp_server,
         api_request,
-        os.environ.get('URL_GET_USER'),
-        os.environ.get('EMAIL_FROM')
+        config.constants.url_get_user,
+        config.constants.email_from
     )
 
     signal.signal(signal.SIGINT, handler_shutdown)
