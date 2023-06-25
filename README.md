@@ -1,5 +1,5 @@
 # Проектная работа 10 спринта
-
+Репозиторий https://github.com/elezbar/notifications_sprint_1
 Комманда 24:
 
 Эльдар Старостенко (TeamLead)
