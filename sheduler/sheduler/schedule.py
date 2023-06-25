@@ -30,7 +30,7 @@ class Notifications(NotificationsABC):
         stmt = (
             select(Notification)
             .where(Notification.id_event == self.event_id)
-            .where(Notification.last_update > toDate).limit(50)
+            .where(Notification.last_update > toDate)
             .where(Notification.last_update > Notification.last_notification_send).limit(50)
         )
         asyncio.run(self.iterate_notifications(self.session.scalars(stmt)))
