@@ -20,9 +20,9 @@ class Settings(BaseSettings):
     broker_host: str = Field('127.0.0.1', env='BROKER_HOST')
     broker_port: int = int(Field('5672', env='BROKER_PORT'))
     db_url = (
-        f"{Field('postgresql', env='DB_TYPE')}+psycopg2://{Field('user', env='DB_USER')}:"
-        f"{Field('123qwe', env='DB_PASSWORD')}@{Field('guest', env='DB_HOST')}:"
-        f"{Field(5432, env='DB_PORT')}/{Field('notification', env='DB_NAME')}"
+        f"{Field('postgresql', env='DB_TYPE')}+psycopg2://{Field('user', env='POSTGRES_USER')}:"
+        f"{Field('123qwe', env='POSTGRES_PASSWORD')}@{Field('guest', env='POSTGRES_HOST')}:"
+        f"{Field(5432, env='POSTGRES_PORT')}/{Field('notification', env='POSTGRES_DB')}"
     )
 
     class Config:
