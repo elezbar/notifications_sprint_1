@@ -1,11 +1,13 @@
 
+from http import HTTPStatus
+import aiohttp
 import uvicorn
 from api.v1 import (event, notification, send_notification,
                     sended_notification, unsubscribe, wrapper)
 from core.config import settings
 from core.logger import get_logger
 from db import broker
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.responses import ORJSONResponse
 from services.broker.rabbit_broker import RabbitBroker
 
@@ -43,6 +45,18 @@ async def startup() -> None:
 async def shutdown() -> None:
     for b in broker.priority_brokers:
         b.close()
+
+@app.middleware("http")
+async def auth_middleware(request: Request, call_next):
+    if request.url.path in [app.docs_url, app.openapi_url]:
+        return await call_next(request)
+    headers = request.headers
+    async with aiohttp.ClientSession() as client:
+        resp = await client.get(settings.auth_url, headers=headers)
+        if resp.status == 200:
+            response = await call_next(request)
+            return response
+        return Response(status_code=HTTPStatus.UNAUTHORIZED)
 
 
 app.include_router(event.router, prefix='/api/v1/event', tags=['event'])
