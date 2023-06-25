@@ -1,7 +1,7 @@
 import pika
 
-from services.broker.abscract_broker import AbstractBroker
-from services.broker.broker_message.rabbit_broker_message import RabbitBrokerMessage
+from .abscract_broker import AbstractBroker
+from .broker_message.rabbit_broker_message import RabbitBrokerMessage
 
 
 class RabbitBroker(AbstractBroker):
@@ -15,7 +15,7 @@ class RabbitBroker(AbstractBroker):
                  dead_timeout: int = 600):
         """
             Инициализация брокера сообщений:
-            Arguments: 
+            Arguments:
                 :param queue_name: Название очереди
                 :type queue_name: String
                 :param login: Имя пользователя
@@ -76,7 +76,7 @@ class RabbitBroker(AbstractBroker):
     def push(self, body: str):
         """
             Отправка сообещиня в брокер
-            Arguments: 
+            Arguments:
                 :param body: Содержание сообщения
                 :type body: String
         """
@@ -86,13 +86,13 @@ class RabbitBroker(AbstractBroker):
                                          properties=pika.BasicProperties(
                                                 delivery_mode=pika.spec.PERSISTENT_DELIVERY_MODE
                                             )
-                                        )
+                                         )
 
     def pop(self) -> RabbitBrokerMessage:
         """
             Получение сообщения из брокера
-            Return: 
-                :type RabbitBrokerMessage: Объект сообщения 
+            Return:
+                :type RabbitBrokerMessage: Объект сообщения
         """
         body = None
         method_frame, header_frame, body = self.channel_queue.basic_get(
@@ -105,7 +105,7 @@ class RabbitBroker(AbstractBroker):
     def cancel_msg(self, msg: RabbitBrokerMessage):
         """
         Отмена сообщения и возврат в очередь
-        Arguments: 
+        Arguments:
                 :param msg: Сообщение
                 :type msg: RabbitBrokerMessage
         """
@@ -144,4 +144,3 @@ class RabbitBroker(AbstractBroker):
         """
         self.channel_queue.close()
         self.connection.close()
-

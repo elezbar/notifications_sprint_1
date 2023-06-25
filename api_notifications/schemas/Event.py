@@ -9,12 +9,12 @@ class AddEventDB(BaseModel):
 
 
 class EventDB(AddEventDB):
-    id_wrapper: int
+    id_event: int
 
 
 class EditEventDB(AddEventDB):
-    id_wrapper: int
+    id_event: int
 
 
 class DeleteEventDB(BaseModel):
-    id_wrapper: int
+    id_event: int

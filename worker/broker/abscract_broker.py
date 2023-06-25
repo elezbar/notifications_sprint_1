@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from services.broker.broker_message.abstract_broker_message import AbstractBrokerMessage
+from .broker_message.abstract_broker_message import AbstractBrokerMessage
 
 
 class AbstractBroker(ABC):
@@ -19,6 +19,10 @@ class AbstractBroker(ABC):
 
     @abstractmethod
     def cancel_msg(self, msg):
+        pass
+
+    @abstractmethod
+    def postpone_msg(self, msg):
         pass
 
     @abstractmethod

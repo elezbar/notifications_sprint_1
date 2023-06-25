@@ -1,12 +1,12 @@
 
 import uvicorn
-from fastapi import FastAPI
-from fastapi.responses import ORJSONResponse
-
-from api.v1 import event, notification, send_notification, unsubscribe, wrapper
+from api.v1 import (event, notification, send_notification,
+                    sended_notification, unsubscribe, wrapper)
 from core.config import settings
 from core.logger import get_logger
 from db import broker
+from fastapi import FastAPI
+from fastapi.responses import ORJSONResponse
 from services.broker.rabbit_broker import RabbitBroker
 
 logger = get_logger(__name__)
@@ -50,7 +50,7 @@ app.include_router(notification.router, prefix='/api/v1/notification', tags=['no
 app.include_router(send_notification.router, prefix='/api/v1/send_notification', tags=['send_notification'])
 app.include_router(unsubscribe.router, prefix='/api/v1/unsubscribe', tags=['unsubscribe'])
 app.include_router(wrapper.router, prefix='/api/v1/wrapper', tags=['wrapper'])
-
+app.include_router(sended_notification.router, prefix='/api/v1/sended_notification', tags=['sended_notification'])
 
 if __name__ == '__main__':
     uvicorn.run("main:app", host=settings.host, port=settings.port, reload=True)
