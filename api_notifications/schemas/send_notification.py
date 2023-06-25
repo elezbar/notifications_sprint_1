@@ -6,6 +6,7 @@ from pydantic import BaseModel, validator
 class InstantNotification(BaseModel):
     id_user: list[int]
     template: str
+    type_notification: str
 
     @validator('template')
     def valid_template(cls, v, values):
@@ -25,7 +26,7 @@ class UserNotificationData(BaseModel):
 class DelayedNotification(BaseModel):
     user_data: list[UserNotificationData]
     template: str
-    type: str
+    type_notification: str
 
     @validator('template')
     def valid_template(cls, v, values):

@@ -19,6 +19,7 @@ class Settings(BaseSettings):
     broker_password: str = Field('guest', env='BROKER_PASSWORD')
     broker_host: str = Field('127.0.0.1', env='BROKER_HOST')
     broker_port: int = int(Field('5672', env='BROKER_PORT'))
+    auth_url: str = Field('auth_service', env='AUTH_URL')
     db_url = (
         f"{Field('postgresql', env='DB_TYPE')}+psycopg2://{Field('user', env='POSTGRES_USER')}:"
         f"{Field('123qwe', env='POSTGRES_PASSWORD')}@{Field('guest', env='POSTGRES_HOST')}:"
